@@ -54,7 +54,7 @@ namespace RoadMap
         _query.AppendLine("  INNER JOIN EMPLOYEES ON EM_ID = SD_EM_ID                                                  ");
         _query.AppendLine("  INNER JOIN PROJECTS  ON PJ_ID = SD_PJ_ID                                                  ");
         _query.AppendLine(" WHERE   1 = 1                                                                              ");
-        _query.AppendLine("   AND   sd_week_start = " + WeekNumber);
+        //_query.AppendLine("   AND   sd_week_start = " + WeekNumber);
         _query.AppendLine(" ORDER BY SD_WEEK_START ASC, SD_PJ_ID ASC, EM_NAME ASC                                      ");
 
         _query.AppendLine("select * from employees");
@@ -252,7 +252,10 @@ namespace RoadMap
         {
           _cmd.CommandText = _query.ToString();// 
           _cmd.Connection = Con;
-          Con.Open();
+        if (Con.State != ConnectionState.Open)
+        {
+            Con.Open();
+        }
           //a la variable DataReader asignamos  el la variable de tipo SqlCommand
           using (SqlDataReader _dr = _cmd.ExecuteReader())
           {
