@@ -11,7 +11,7 @@ namespace RoadMap
 {
   public class Common
   {
-    public const String CONNECTION = @"Server=WSI-LAPTOP-61\SQL2K14;Database=Roadmap;User Id=sa;Password=Manager01;";
+    public const String CONNECTION = @"Server=(local);Database=Roadmap;Integrated Security=true;";
 
     internal static void GetChkListData(CheckedListBox checkedListBox, String Query, String Field)
     {

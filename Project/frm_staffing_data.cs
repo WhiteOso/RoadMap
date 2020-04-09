@@ -70,9 +70,10 @@ namespace RoadMap
         _ds.Tables[0].TableName = "STAFFING_DATA";
         _ds.Tables[1].TableName = "EMPLOYEES";
 
-        MasterDetail = new MasterControl(ref _ds, false);
+        MasterDetail = new MasterControl(ref _ds); //(ref _ds, false);
         MasterDetail.CellFormatting += _masterDetail_CellFormatting;
         MasterDetail.setParentSource("STAFFING_DATA", "EM_ID");
+        MasterDetail.childView.Add("EMPLOYEES", "employees");
         //_masterDetail.childView.Add("EMPLOYEES", "employees");
         //  masterDetail.childView.Add(NwindDataSet.Invoices.TableName, "Invoices")
 

@@ -1,11 +1,11 @@
-﻿Imports System.Windows.Forms
-Imports System.Drawing
+﻿Imports System.Drawing
+Imports System.Windows.Forms
 
-Module CModule
+Module cModule
 #Region "CustomGrid"
-  Dim dateCellStyle As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle With {.Alignment = Windows.Forms.DataGridViewContentAlignment.MiddleRight}
+  Dim dateCellStyle As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle With {.Alignment = DataGridViewContentAlignment.MiddleRight}
   Dim amountCellStyle As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle With {.Alignment = DataGridViewContentAlignment.MiddleRight, .Format = "N2"}
-  Dim gridCellStyle As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle With { _
+  Dim gridCellStyle As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle With {
      .Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft,
      .BackColor = System.Drawing.Color.FromArgb(CType(CType(79, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(189, Byte), Integer)),
      .Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte)),
@@ -13,7 +13,7 @@ Module CModule
      .SelectionBackColor = System.Drawing.SystemColors.Highlight,
      .SelectionForeColor = System.Drawing.SystemColors.HighlightText,
      .WrapMode = System.Windows.Forms.DataGridViewTriState.[True]}
-  Dim gridCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle With { _
+  Dim gridCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle With {
       .Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft,
       .BackColor = System.Drawing.SystemColors.ControlLightLight,
       .Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte)),
@@ -21,7 +21,7 @@ Module CModule
       .SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(155, Byte), Integer), CType(CType(187, Byte), Integer), CType(CType(89, Byte), Integer)),
       .SelectionForeColor = System.Drawing.SystemColors.HighlightText,
       .WrapMode = System.Windows.Forms.DataGridViewTriState.[False]}
-  Dim gridCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle With { _
+  Dim gridCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle With {
       .Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft,
       .BackColor = System.Drawing.Color.Lavender,
       .Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte)),
@@ -70,9 +70,9 @@ Module CModule
     Dim centerFormat = New StringFormat()
     centerFormat.Alignment = StringAlignment.Center
     centerFormat.LineAlignment = StringAlignment.Center
-    Dim headerBounds As Rectangle = New Rectangle(e.RowBounds.Left, e.RowBounds.Top, _
+    Dim headerBounds As Rectangle = New Rectangle(e.RowBounds.Left, e.RowBounds.Top,
         grid.RowHeadersWidth, e.RowBounds.Height - sender.rows(e.RowIndex).DividerHeight)
-    e.Graphics.DrawString(rowIdx, grid.Font, SystemBrushes.ControlText, _
+    e.Graphics.DrawString(rowIdx, grid.Font, SystemBrushes.ControlText,
         headerBounds, centerFormat)
   End Sub
 #End Region

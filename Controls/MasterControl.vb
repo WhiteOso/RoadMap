@@ -1,5 +1,5 @@
-﻿Imports System.Windows.Forms
-Imports System.Drawing
+﻿Imports System.Drawing
+Imports System.Windows.Forms
 
 Public Class MasterControl
   Inherits DataGridView
@@ -19,15 +19,13 @@ Public Class MasterControl
   Dim _cDataset As DataSet
   Dim _foreignKey As String
   Dim _filterFormat As String
-  Dim _haveChild As Boolean
   Enum rowHeaderIcons
     expand = 0
     collapse = 1
   End Enum
 #End Region
 #Region "Initialze and Display"
-  Sub New(ByRef cDataset As DataSet, Optional HaveChild As Boolean = True)
-    Me._haveChild = HaveChild
+  Sub New(ByRef cDataset As DataSet)
     Me.Controls.Add(childView)
     InitializeComponent()
     _cDataset = cDataset
@@ -44,12 +42,10 @@ Public Class MasterControl
     '
     'RowHeaderIconList
     '
-    If Me._haveChild Then
-      Me.RowHeaderIconList.ImageStream = CType(resources.GetObject("RowHeaderIconList.ImageStream"), System.Windows.Forms.ImageListStreamer)
-      Me.RowHeaderIconList.TransparentColor = System.Drawing.Color.Transparent
-      Me.RowHeaderIconList.Images.SetKeyName(0, "expand.png")
-      Me.RowHeaderIconList.Images.SetKeyName(1, "collapse.png")
-    End If
+    Me.RowHeaderIconList.ImageStream = CType(resources.GetObject("RowHeaderIconList.ImageStream"), System.Windows.Forms.ImageListStreamer)
+    Me.RowHeaderIconList.TransparentColor = System.Drawing.Color.Transparent
+    Me.RowHeaderIconList.Images.SetKeyName(0, "texpand.png")
+    Me.RowHeaderIconList.Images.SetKeyName(1, "tcollapse.png")
     '
     'MasterControl
     '
@@ -75,10 +71,6 @@ Public Class MasterControl
 #End Region
 #Region "GridEvents"
   Private Sub MasterControl_RowHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles MyBase.RowHeaderMouseClick
-    If Me.childView.TabPages.Count = 0 Then
-      Return
-    End If
-
     Dim rect As Rectangle = New Rectangle((rowDefaultHeight - 16) / 2, (rowDefaultHeight - 16) / 2, 16, 16)
     If rect.Contains(e.Location) Then
       If rowCurrent.Contains(e.RowIndex) Then
@@ -131,9 +123,7 @@ Public Class MasterControl
         childView.Height = sender.Rows(e.RowIndex).DividerHeight - 10
         childView.Visible = True
       Else
-        If Me._haveChild Then
-          e.Graphics.DrawImage(RowHeaderIconList.Images(rowHeaderIcons.expand), rect)
-        End If
+        e.Graphics.DrawImage(RowHeaderIconList.Images(rowHeaderIcons.expand), rect)
       End If
     End If
     rowPostPaint_HeaderCount(sender, e)

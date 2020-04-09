@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common.cs" />
+    <Compile Include="DBHelper.cs" />
     <Compile Include="frm_projects.cs">
       <SubType>Form</SubType>
     </Compile>
